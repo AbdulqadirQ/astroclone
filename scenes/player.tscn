@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcee62v2t5a0h"]
+
+[ext_resource type="Texture2D" uid="uid://dwpmdjuyaaqol" path="res://graphics/ships/spaceship_4.png" id="1_l48yi"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_y5og6"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_y5og6")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_l48yi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-5, -245, -40, -241, -85, -220, -122, -179, -141, -141, -146, -118, -242, -104, -260, -135, -295, -150, -323, -146, -341, -137, -358, -115, -365, -85, -357, -47, -337, -30, -324, -25, -323, 5, -303, 8, -281, 5, -282, -25, -263, -34, -242, -66, -148, -56, -137, -8, -110, 36, -77, 62, -57, 122, -61, 163, -47, 190, -20, 208, -21, 238, -2, 243, 20, 239, 21, 208, 42, 197, 61, 165, 62, 144, 57, 121, 75, 64, 103, 44, 124, 17, 137, -4, 144, -26, 149, -57, 242, -65, 250, -48, 262, -35, 279, -25, 281, 5, 302, 8, 323, 5, 322, -26, 345, -39, 362, -68, 362, -97, 353, -117, 339, -134, 306, -148, 278, -143, 257, -125, 244, -102, 145, -116, 134, -154, 110, -191, 75, -221, 31, -240)

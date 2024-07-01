@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://gka2aedt6rmo"]
+[gd_scene load_steps=3 format=3 uid="uid://gka2aedt6rmo"]
 
 [ext_resource type="Texture2D" uid="uid://otl6l32geiqb" path="res://graphics/background.png" id="1_0qiye"]
+[ext_resource type="PackedScene" uid="uid://bcee62v2t5a0h" path="res://scenes/player.tscn" id="2_i0blb"]
 
 [node name="Level" type="Node2D"]
+position = Vector2(345, 280)
+metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 position = Vector2(603, 256)
 texture = ExtResource("1_0qiye")
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("2_i0blb")]
+position = Vector2(585, 225)
+scale = Vector2(0.15, 0.15)
