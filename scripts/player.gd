@@ -32,5 +32,5 @@ func _integrate_forces(state):
 	screen_wrap()
 
 func screen_wrap():
-	position.x = wrapf(position.x, 0, screen_size.x)
-	position.y = wrapf(position.y, 0, screen_size.y)
+	position.x = wrapf(position.x, -50, screen_size.x+50)
+	position.y = wrapf(position.y, -50, screen_size.y+50)
