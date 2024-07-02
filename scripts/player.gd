@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @export var ship_mass_kg = 500000
-var ROTATION_TORQUE = 500 * ship_mass_kg
+var ROTATION_TORQUE = 4500 * ship_mass_kg
 var SHIP_IMPULSE = 20 * ship_mass_kg
 const INERTIA = 0 # the higher this value, the more difficult it is for ship to turn
 const GRAVITY = 0
