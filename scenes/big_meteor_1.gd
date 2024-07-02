@@ -1,14 +1,13 @@
-extends RigidBody2D
+extends StaticBody2D
 
-@export var meteor_mass_kg = 500000000
-var ROTATION_TORQUE = 4500 * meteor_mass_kg
-var SHIP_IMPULSE = 20 * meteor_mass_kg
-const INERTIA = 0 # the higher this value, the more difficult it is for ship to turn
-const GRAVITY = 0
+var screen_size: Vector2
+var speed: int
+var rotation_speed: int
+var direction_x: float
+var direction_y: float
 
-var screen_size = null
+signal collision
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 	var rng := RandomNumberGenerator.new()
@@ -16,14 +15,16 @@ func _ready():
 	var random_x = rng.randi_range(0, width)
 	var random_y = rng.randi_range(-150, -50)
 	position = Vector2(random_x, random_y)
+	
+	speed = rng.randi_range(300, 500)
+	direction_x = rng.randf_range(-1, 1)
+	direction_y = rng.randf_range(0.1, 1)
+	rotation_speed = rng.randi_range(40, 100)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
-func _integrate_forces(state):
-	gravity_scale = GRAVITY
+	position += Vector2(direction_x, direction_y) * speed * delta
+	rotation_degrees += rotation_speed * delta
 	screen_wrap()
 
 func screen_wrap():
