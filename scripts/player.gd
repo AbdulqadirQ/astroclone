@@ -1,9 +1,10 @@
-extends CharacterBody2D
+extends RigidBody2D
 
-@export var speed := 4000
-@export var rotation_speed = 5
+@export var ship_impulse := 5
+@export var rotation_speed = 500
 
-var rotation_direction = 0
+const INERTIA = 0 # the higher this value, the more difficult it is for ship to turn
+const GRAVITY = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,11 +15,15 @@ func _process(delta):
 	pass
 
 
-func get_input():
-	rotation_direction = Input.get_axis("left", "right")
-	velocity = -transform.y * Input.get_axis("back", "forward") * speed
+func _integrate_forces(state):
+	gravity_scale = GRAVITY
+	if Input.is_action_pressed("forward"):
+		var angle = $".".rotation
+		print(angle)
+		apply_central_impulse(Vector2(sin(-angle), cos(angle)) * -ship_impulse)
 
-func _physics_process(delta):
-	get_input()
-	rotation += rotation_direction * rotation_speed * delta
-	move_and_slide()
+	set_inertia(INERTIA)
+	if Input.is_action_pressed("right"):
+		apply_torque(rotation_speed)
+	if Input.is_action_pressed("left"):
+		apply_torque(-rotation_speed)
