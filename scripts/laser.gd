@@ -1,5 +1,6 @@
 extends Area2D
 
+const LASER_DAMAGE = 5
 const OUT_OF_BOUNDS_BUFFER = 500
 
 @export var speed := 800

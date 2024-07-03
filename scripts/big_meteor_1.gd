@@ -1,13 +1,13 @@
 extends StaticBody2D
 
 const SIZE_DAMAGE_MODIFIER := 3
-var screen_size: Vector2
-var speed: int
-var rotation_speed: int
+
 var direction_x: float
 var direction_y: float
-
-signal collision
+var health := 25
+var rotation_speed: int
+var screen_size: Vector2
+var speed: int
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -27,6 +27,10 @@ func _process(delta):
 	position += Vector2(direction_x, direction_y) * speed * delta
 	rotation_degrees += rotation_speed * delta
 	screen_wrap()
+	if(health <= 0):
+		print(health)
+		# get rid of meteor
+		queue_free()
 
 func screen_wrap():
 	position.x = wrapf(position.x, -150, screen_size.x+150)
@@ -34,5 +38,8 @@ func screen_wrap():
 
 
 func _on_area_2d_area_entered(area):
+	# get rid of laser
+	health -= area.LASER_DAMAGE
 	area.queue_free()
-	queue_free()
+	print(health)
+
