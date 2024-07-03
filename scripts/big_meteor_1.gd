@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")
+
 const SIZE_DAMAGE_MODIFIER := 3
 
 var direction_x: float
@@ -43,4 +45,8 @@ func _on_area_2d_area_entered(area):
 		# get rid of laser
 		area.queue_free()
 		print(health)
-
+		
+		var explosion = explosion_scene.instantiate()
+		$Explosions.add_child(explosion)
+		await get_tree().create_timer(0.1).timeout
+		explosion.queue_free()
