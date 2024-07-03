@@ -1,10 +1,11 @@
 extends RigidBody2D
 
+const INERTIA = 0 # the higher this value, the more difficult it is for ship to turn
+const GRAVITY = 0
 var SHIP_MASS_KG = 5
 var ROTATION_TORQUE = 4500 * SHIP_MASS_KG
 var SHIP_IMPULSE = 20 * SHIP_MASS_KG
-const INERTIA = 0 # the higher this value, the more difficult it is for ship to turn
-const GRAVITY = 0
+var SHIP_HEALTH = 10
 
 var screen_size = null
 
@@ -32,4 +33,11 @@ func screen_wrap():
 	position.y = wrapf(position.y, -50, screen_size.y+50)
 
 func _on_body_entered(body):
-	print("Collision")
+	print("Collision: ",body)
+	var velocity_on_impact = global_transform.basis_xform_inv(linear_velocity)
+	# fairly arbitrary formula on what feels ok
+	var damage_taken = floor(body.SIZE_DAMAGE_MODIFIER * abs(velocity_on_impact.x + velocity_on_impact.y)/500)
+	if damage_taken > 9:
+		damage_taken = 9
+	print(damage_taken)
+	

@@ -1,5 +1,6 @@
 extends StaticBody2D
 
+const SIZE_DAMAGE_MODIFIER := 3
 var screen_size: Vector2
 var speed: int
 var rotation_speed: int
