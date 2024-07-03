@@ -9,10 +9,17 @@ var SHIP_HEALTH = 10
 
 var screen_size = null
 
+signal laser(pos)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 	position = Vector2(960,540)
+
+func _process(_delta):
+	if Input.is_action_just_pressed("shoot"):
+		laser.emit($LaserStartPos.global_position, rotation)
+		print("shooting")
 
 func _integrate_forces(_state):
 	gravity_scale = GRAVITY

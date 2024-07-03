@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://crsd2bw51wpoi"]
 
 [ext_resource type="Texture2D" uid="uid://c4tg0r4ip0no5" path="res://graphics/meteors/meteor_1.png" id="1_20wvc"]
-[ext_resource type="Script" path="res://scenes/big_meteor_1.gd" id="1_b7o84"]
+[ext_resource type="Script" path="res://scripts/big_meteor_1.gd" id="1_xin2w"]
 
 [node name="Big_Meteor_1" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 6
-script = ExtResource("1_b7o84")
+script = ExtResource("1_xin2w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
