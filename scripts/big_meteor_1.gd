@@ -31,3 +31,8 @@ func _process(delta):
 func screen_wrap():
 	position.x = wrapf(position.x, -150, screen_size.x+150)
 	position.y = wrapf(position.y, -150, screen_size.y+150)
+
+
+func _on_area_2d_area_entered(area):
+	area.queue_free()
+	queue_free()
