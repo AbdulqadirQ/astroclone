@@ -1,11 +1,12 @@
 extends Node2D
 
+var meteor_scene: PackedScene = load("res://scenes/big_meteor_1.tscn")
 var laser_scene: PackedScene = load("res://scenes/laser.tscn")
 
 
 func _ready():
-	pass # Replace with function body.
-
+	var meteor = meteor_scene.instantiate()
+	$Meteors.add_child(meteor)
 
 func _process(_delta):
 	pass

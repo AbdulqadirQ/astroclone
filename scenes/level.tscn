@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://gka2aedt6rmo"]
+[gd_scene load_steps=4 format=3 uid="uid://gka2aedt6rmo"]
 
 [ext_resource type="Texture2D" uid="uid://otl6l32geiqb" path="res://graphics/background.png" id="1_0qiye"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_y66c4"]
 [ext_resource type="PackedScene" uid="uid://bcee62v2t5a0h" path="res://scenes/player.tscn" id="2_i0blb"]
-[ext_resource type="PackedScene" uid="uid://crsd2bw51wpoi" path="res://scenes/big_meteor_1.tscn" id="3_bejqe"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_y66c4")
@@ -16,9 +15,8 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." instance=ExtResource("2_i0blb")]
 position = Vector2(585, 225)
 
-[node name="Big_Meteor_1" parent="." instance=ExtResource("3_bejqe")]
-position = Vector2(304, 55)
-
 [node name="Lasers" type="Node2D" parent="."]
+
+[node name="Meteors" type="Node2D" parent="."]
 
 [connection signal="laser" from="Player" to="." method="_on_player_laser"]

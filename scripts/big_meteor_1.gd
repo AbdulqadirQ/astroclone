@@ -38,8 +38,9 @@ func screen_wrap():
 
 
 func _on_area_2d_area_entered(area):
-	# get rid of laser
-	health -= area.LASER_DAMAGE
-	area.queue_free()
-	print(health)
+	if(area.is_in_group("lasers")):
+		health -= area.LASER_DAMAGE
+		# get rid of laser
+		area.queue_free()
+		print(health)
 
