@@ -28,11 +28,8 @@ func _ready():
 func _process(delta):
 	position += Vector2(direction_x, direction_y) * speed * delta
 	rotation_degrees += rotation_speed * delta
+	#print(rotation)
 	screen_wrap()
-	if(health <= 0):
-		print(health)
-		# get rid of meteor
-		queue_free()
 
 func screen_wrap():
 	position.x = wrapf(position.x, -150, screen_size.x+150)
@@ -40,13 +37,20 @@ func screen_wrap():
 
 
 func _on_area_2d_area_entered(area):
+	
 	if(area.is_in_group("lasers")):
 		health -= area.LASER_DAMAGE
+		print(health)
+		var explosion = explosion_scene.instantiate()
+		explosion.position = Vector2(0,0)
+		$Explosions.add_child(explosion)
+		await get_tree().create_timer(0.2).timeout
+
 		# get rid of laser
 		area.queue_free()
-		print(health)
-		
-		var explosion = explosion_scene.instantiate()
-		$Explosions.add_child(explosion)
-		await get_tree().create_timer(0.1).timeout
+		# get rid of explosion
 		explosion.queue_free()
+		if(health <= 0):
+			print(health)
+			# get rid of meteor
+			queue_free()
