@@ -7,8 +7,6 @@ const OUT_OF_BOUNDS_BUFFER = 500
 var screen_boundary_width
 var screen_boundary_height
 
-signal collision
-
 func _ready():
 	screen_boundary_width = get_viewport().get_visible_rect().size[0]
 	screen_boundary_height = get_viewport().get_visible_rect().size[1]

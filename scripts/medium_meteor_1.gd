@@ -7,7 +7,7 @@ const SIZE_DAMAGE_MODIFIER := 3
 
 var direction_x: float
 var direction_y: float
-var health := 25
+var health := 5
 var rotation_speed: int
 var screen_size: Vector2
 var speed: int
