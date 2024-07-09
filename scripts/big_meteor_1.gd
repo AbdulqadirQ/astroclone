@@ -1,3 +1,4 @@
+class_name BigMeteor
 extends StaticBody2D
 
 var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")

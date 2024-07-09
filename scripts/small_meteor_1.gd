@@ -1,14 +1,14 @@
-class_name MediumMeteor
+class_name SmallMeteor
 extends StaticBody2D
 
 var explosion_scene: PackedScene = load("res://scenes/explosion.tscn")
 
-const medium_meteor_scene: PackedScene = preload("res://scenes/medium_meteor_1.tscn")
-const SIZE_DAMAGE_MODIFIER := 2
+const small_meteor_scene: PackedScene = preload("res://scenes/small_meteor_1.tscn")
+const SIZE_DAMAGE_MODIFIER := 1
 
 var direction_x: float
 var direction_y: float
-var health := 10
+var health := 3
 var rotation_speed: int
 var screen_size: Vector2
 var spawn_position: Vector2
@@ -18,8 +18,8 @@ var speed: int
 
 signal destroyed
 
-static func new_meteor(spawn_position: Vector2, spawn_direction_x: float, spawn_direction_y: float) -> MediumMeteor:
-	var new_meteor = medium_meteor_scene.instantiate()
+static func new_meteor(spawn_position: Vector2, spawn_direction_x: float, spawn_direction_y: float) -> SmallMeteor:
+	var new_meteor = small_meteor_scene.instantiate()
 	new_meteor.spawn_position = spawn_position
 	new_meteor.spawn_direction_x = spawn_direction_x
 	new_meteor.spawn_direction_y = spawn_direction_y
@@ -45,7 +45,6 @@ func screen_wrap():
 
 func _on_area_2d_area_entered(area):
 	if(area.is_in_group("lasers")):
-		print("Medeium meteor hit by laser")
 		health -= area.LASER_DAMAGE
 		print("Meteor health: ", health)
 		var explosion = explosion_scene.instantiate()
@@ -57,7 +56,6 @@ func _on_area_2d_area_entered(area):
 		# get rid of explosion
 		explosion.queue_free()
 		if(health <= 0):
-			print("medium meteor destroyed")
-			destroyed.emit(position, spawn_direction_x, spawn_direction_y)
+			destroyed.emit()
 			# get rid of meteor
 			queue_free()

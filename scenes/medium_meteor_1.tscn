@@ -5,7 +5,7 @@
 
 [node name="Medium_Meteor_1" type="StaticBody2D"]
 collision_layer = 4
-collision_mask = 14
+collision_mask = 8
 script = ExtResource("1_fb40c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -21,3 +21,5 @@ polygon = PackedVector2Array(-21, -69, -35, -63, -47, -56, -57, -47, -61, -42, -
 polygon = PackedVector2Array(-21, -69, -35, -63, -47, -56, -57, -47, -61, -42, -64, -37, -68, -19, -70, -13, -73, -8, -79, -1, -87, 5, -91, 9, -94, 13, -96, 17, -97, 25, -94, 32, -91, 39, -89, 48, -89, 56, -87, 61, -82, 66, -76, 69, -69, 70, -60, 70, -40, 66, -24, 64, -3, 66, 11, 68, 32, 72, 39, 73, 52, 71, 59, 69, 76, 55, 91, 39, 96, 30, 97, 12, 96, 6, 95, 1, 84, -36, 80, -41, 74, -45, 71, -47, 57, -53, 40, -64, 33, -69, 27, -72, 19, -73, 7, -73, -6, -72)
 
 [node name="Explosions" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
