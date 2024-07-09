@@ -20,9 +20,8 @@ func _on_player_laser(pos, ship_rotation):
 	laser.rotation = ship_rotation - 1.6
 
 
-func _on_big_meteor_destroyed():
-	print("SPAWNING MEDIUM METEOR")
-	var medium_meteor_1 = medium_meteor_scene.instantiate()
-	var medium_meteor_2 = medium_meteor_scene.instantiate()
+func _on_big_meteor_destroyed(destroyed_position, destroyed_direction_x, destroyed_direction_y):
+	var medium_meteor_1 = MediumMeteor.new_meteor(destroyed_position, destroyed_direction_x, destroyed_direction_y)
+	var medium_meteor_2 = MediumMeteor.new_meteor(destroyed_position, -destroyed_direction_x, -destroyed_direction_y)
 	$Meteors.add_child(medium_meteor_1)
 	$Meteors.add_child(medium_meteor_2)

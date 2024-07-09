@@ -7,7 +7,7 @@ const SIZE_DAMAGE_MODIFIER := 3
 
 var direction_x: float
 var direction_y: float
-var health := 25
+var health := 5
 var rotation_speed: int
 var screen_size: Vector2
 var speed: int
@@ -46,12 +46,11 @@ func _on_area_2d_area_entered(area):
 		explosion.position = Vector2(0,0)
 		$Explosions.add_child(explosion)
 		await get_tree().create_timer(0.2).timeout
-
 		# get rid of laser
 		area.queue_free()
 		# get rid of explosion
 		explosion.queue_free()
 		if(health <= 0):
-			destroyed.emit()
+			destroyed.emit(position, direction_x, direction_y)
 			# get rid of meteor
 			queue_free()
